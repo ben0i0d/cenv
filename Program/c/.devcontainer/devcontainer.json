@@ -1,14 +1,14 @@
 // For format details, see https://aka.ms/devcontainer.json. 
 // For config options, see the README at: https://github.com/devcontainers/templates/tree/main/src/debian
 {
-	"name": "java",
-	
-	"image": "docker.io/ben0i0d/cenv:java",
-	
+	"name": "c",
+
+	"image": "docker.io/ben0i0d/cenv:c",
+
 	// Configure vscode-extensions.
 	"customizations": {
 		"vscode": {
-		  "extensions": ["vscjava.vscode-java-pack"]
+		  "extensions": ["formulahendry.code-runner", "ms-vscode.cpptools-extension-pack"]
 		}
 	  }
 }

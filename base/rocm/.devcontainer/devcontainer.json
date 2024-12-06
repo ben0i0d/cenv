@@ -1,19 +1,7 @@
-// For format details, see https://aka.ms/devcontainer.json. For config options, see the
-// README at: https://github.com/devcontainers/templates/tree/main/src/debian
+// For format details, see https://aka.ms/devcontainer.json. 
+// For config options, see the README at: https://github.com/devcontainers/templates/tree/main/src/debian
 {
 	"name": "rocm",
-	// Or use a Dockerfile or Docker Compose file. More info: https://containers.dev/guide/dockerfile
 	"image": "eoelab.org:1027/ben0i0d/cenv:rocm",
 	"runArgs": ["--device","/dev/kfd", "--device","/dev/dri", "--security-opt", "seccomp=unconfined", "--shm-size","4G"]
-	// Features to add to the dev container. More info: https://containers.dev/features.
-	// "features": {},
-
-	// Use 'forwardPorts' to make a list of ports inside the container available locally.
-	// "forwardPorts": [],
-
-	// Configure tool-specific properties.
-	// "customizations": {},
-
-	// Uncomment to connect as root instead. More info: https://aka.ms/dev-containers-non-root.
-	// "remoteUser": "root"
 }

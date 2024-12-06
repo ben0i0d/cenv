@@ -66,6 +66,18 @@ jobs:
             https_proxy=http://192.168.2.2:7890      
           tags: eoelab.org:1027/${{ gitea.repository }}:rocm
 
+  C:
+    runs-on: runner
+    needs: Base
+    steps:
+      - name: checkout code
+        uses: https://eoelab.org:1027/actions/checkout@v4
+      - name: c build
+        uses: https://eoelab.org:1027/actions/build-push-action@v6
+        with:
+          context: Program/c
+          tags: eoelab.org:1027/${{ gitea.repository }}:c
+
   Cpp:
     runs-on: runner
     needs: Base
@@ -88,7 +100,7 @@ jobs:
         uses: https://eoelab.org:1027/actions/build-push-action@v6
         with:
           context: Program/java/jdk
-          tags: eoelab.org:1027/${{ gitea.repository }}:java
+          tags: eoelab.org:1027/${{ gitea.repository }}:jdk
 
   JRE:
     runs-on: runner
@@ -151,6 +163,17 @@ jobs:
           context: Program/r
           tags: eoelab.org:1027/${{ gitea.repository }}:r
   
+  MC_BE:
+    runs-on: runner
+    needs: Base
+    steps:
+      - name: checkout code
+        uses: https://eoelab.org:1027/actions/checkout@v4
+      - name: mc_be build
+        uses: https://eoelab.org:1027/actions/build-push-action@v6
+        with:
+          context: GS/mc/be
+          tags: eoelab.org:1027/${{ gitea.repository }}:mc_be
 
   MC_JRE_8:
     runs-on: runner

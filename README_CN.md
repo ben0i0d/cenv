@@ -36,14 +36,15 @@ CUDA-->B
 ROCM-->B
 
 B-->P{PROGRAM}
-P-->PA(Cpp)
-P-->PB(Java)
-PB-->PBA(Jdk)
-PB-->PBB(Jre)
-P-->PC(Js)
-P-->PD(Julia)
-P-->PE(Python)
-P-->PF(R)
+P-->PA(C)
+P-->PB(Cpp)
+P-->PC(Java)
+PC-->PCA(Jdk)
+PC-->PCB(Jre)
+P-->PD(Js)
+P-->PE(Julia)
+P-->PF(Python)
+P-->PG(R)
 
 B-->G{GameServer}-->GA{MC}-->GAA(JAVA)
 GAA-->GAAA(JRE_8)
