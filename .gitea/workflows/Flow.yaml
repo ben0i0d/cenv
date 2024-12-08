@@ -127,6 +127,18 @@ jobs:
           context: Program/js
           tags: eoelab.org:1027/${{ gitea.repository }}:js
 
+  Hexo:
+    runs-on: runner
+    needs: JS
+    steps:
+      - name: checkout code
+        uses: https://eoelab.org:1027/actions/checkout@v4
+      - name: hexo build
+        uses: https://eoelab.org:1027/actions/build-push-action@v6
+        with:
+          context: CI/hexo
+          tags: eoelab.org:1027/${{ gitea.repository }}:hexo
+
   Python:
     runs-on: runner
     needs: Base

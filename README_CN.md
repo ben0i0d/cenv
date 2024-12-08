@@ -28,12 +28,29 @@ English | [中文](README_CN.md)
 `cp -r .devcontainer WORKSDIR`
 
 ## 镜像依赖
+* `Program`:开发环境，主要为devcontainer
+* `CI`:CI作业环境，
+* `GS`:游戏服务器
 ```mermaid
 graph LR
 
 CPU-->B{Base}
 CUDA-->B
 ROCM-->B
+
+B-->C{CI}
+C-->CA(Hexo)
+
+B-->G{GS}-->GA{MC}-->GAA(JAVA)
+GAA-->GAAA(JRE_8)
+GAA-->GAAB(JRE_11)
+GAA-->GAAC(JRE_17)
+GAA-->GAAD(JRE_21)
+
+G-->GB{MCSM}-->GBA(Web)
+GB-->GBB(Daemon)
+
+G-->GC(steam)-->GCA(steam_wine)
 
 B-->P{PROGRAM}
 P-->PA(C)
@@ -45,17 +62,6 @@ P-->PD(Js)
 P-->PE(Julia)
 P-->PF(Python)
 P-->PG(R)
-
-B-->G{GameServer}-->GA{MC}-->GAA(JAVA)
-GAA-->GAAA(JRE_8)
-GAA-->GAAB(JRE_11)
-GAA-->GAAC(JRE_17)
-GAA-->GAAD(JRE_21)
-
-G-->GB{MCSM}-->GBA(Web)
-GB-->GBB(Daemon)
-
-G-->GC(steam)-->GCA(steam_wine)
 ```
 
 ## 镜像源

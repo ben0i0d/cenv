@@ -28,12 +28,29 @@ English | [中文](README_CN.md)
 `cp -r .devcontainer WORKSDIR`
 
 ## Image dependencies
+* `Program` : development environment, primarily serving the devcontainer.
+* `CI` : CI job environment
+* `GS` : game server
 ```mermaid
 graph LR
 
 CPU-->B{Base}
 CUDA-->B
 ROCM-->B
+
+B-->C{CI}
+C-->CA(Hexo)
+
+B-->G{GS}-->GA{MC}-->GAA(JAVA)
+GAA-->GAAA(JRE_8)
+GAA-->GAAB(JRE_11)
+GAA-->GAAC(JRE_17)
+GAA-->GAAD(JRE_21)
+
+G-->GB{MCSM}-->GBA(Web)
+GB-->GBB(Daemon)
+
+G-->GC(steam)-->GCA(steam_wine)
 
 B-->P{PROGRAM}
 P-->PA(C)
@@ -45,17 +62,6 @@ P-->PD(Js)
 P-->PE(Julia)
 P-->PF(Python)
 P-->PG(R)
-
-B-->G{GameServer}-->GA{MC}-->GAA(JAVA)
-GAA-->GAAA(JRE_8)
-GAA-->GAAB(JRE_11)
-GAA-->GAAC(JRE_17)
-GAA-->GAAD(JRE_21)
-
-G-->GB{MCSM}-->GBA(Web)
-GB-->GBB(Daemon)
-
-G-->GC(steam)-->GCA(steam_wine)
 ```
 ## Upstream
 * NVIDIA: https://gitlab.com/nvidia/container-images/cuda
