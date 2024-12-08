@@ -18,7 +18,7 @@ English | [中文](README_CN.md)
 
 ## Version
 * cuda: 12.4
-* rocm: 6.2.4
+* rocm: 6.3
 
 ## Usage
 ### container

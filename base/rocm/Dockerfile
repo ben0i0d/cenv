@@ -2,7 +2,7 @@ FROM ubuntu:24.04
 
 ARG UBUNTU_MIRROR
 
-ARG VERSION=6.2.4
+ARG VERSION=6.3
 
 ENV PATH="${PATH}:/opt/rocm/bin" \
     DEBIAN_FRONTEND=noninteractive
