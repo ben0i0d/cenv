@@ -7,8 +7,8 @@
 * OS: 
     * debian testing
     * alpine edge
-* ROCM: 7.1.0
-* CUDA: >= 12.3
+* ROCM: 7.1.1
+* CUDA: >= 13.1
 ## Container Usage
 1. oci: `podman run -it`, See the `runArgs` section of the devcontainer config file for more options.
 2. devcontainer(VScode): `cp -r .devcontainer WORKDIR`

@@ -1,8 +1,5 @@
-# This is a basic workflow to help you get started with Actions
-
 name: CI
 
-# Controls when the workflow will run
 on:
   # Triggers the workflow on push or pull request events but only for the "main" branch
   push:
@@ -13,14 +10,11 @@ on:
   # Allows you to run this workflow manually from the Actions tab
   workflow_dispatch:
 
-# A workflow run is made up of one or more jobs that can run sequentially or in parallel
 jobs:
   Base:
     runs-on: runner
     container:
       image: codeberg.org/eoelab/cenv:kaniko
-      volumes:
-        - kaniko-cache:/cache
     strategy:
       matrix:
         tag: [alpine, debian]
@@ -47,17 +41,12 @@ jobs:
             --context Base/${{ matrix.tag }} \
             --dockerfile Base/${{ matrix.tag }}/Dockerfile \
             --destination codeberg.org/${{ forgejo.repository }}:${{ matrix.tag }} \
-            --cache=true --no-push-cache \
-            --cache-dir /cache \
-            --cache-copy-layers --cache-run-layers \
             --single-snapshot
   
   Denv:
     runs-on: runner
     container:
       image: codeberg.org/eoelab/cenv:kaniko
-      volumes:
-        - kaniko-cache:/cache
     needs: Base
     strategy:
       matrix:
@@ -70,17 +59,12 @@ jobs:
             --context Denv/${{ matrix.tag }} \
             --dockerfile Denv/${{ matrix.tag }}/Dockerfile \
             --destination codeberg.org/${{ forgejo.repository }}:${{ matrix.tag }} \
-            --cache=true --no-push-cache \
-            --cache-dir /cache \
-            --cache-copy-layers --cache-run-layers \
             --single-snapshot
   
   Gpu:
     runs-on: runner
     container:
       image: codeberg.org/eoelab/cenv:kaniko
-      volumes:
-        - kaniko-cache:/cache
     needs: Denv
     strategy:
       matrix:
@@ -93,17 +77,12 @@ jobs:
             --context Gpu/${{ matrix.tag }} \
             --dockerfile Gpu/${{ matrix.tag }}/Dockerfile \
             --destination codeberg.org/${{ forgejo.repository }}:${{ matrix.tag }} \
-            --cache=true --no-push-cache \
-            --cache-dir /cache \
-            --cache-copy-layers --cache-run-layers \
             --single-snapshot
 
   Renv:
     runs-on: runner
     container:
       image: codeberg.org/eoelab/cenv:kaniko
-      volumes:
-        - kaniko-cache:/cache
     needs: Base
     strategy:
       matrix:
@@ -116,21 +95,4 @@ jobs:
             --context Renv/${{ matrix.tag }} \
             --dockerfile Renv/${{ matrix.tag }}/Dockerfile \
             --destination codeberg.org/${{ forgejo.repository }}:${{ matrix.tag }} \
-            --cache=true --no-push-cache \
-            --cache-dir /cache \
-            --cache-copy-layers --cache-run-layers \
             --single-snapshot
-
-  Cleanup:
-    runs-on: runner
-    container:
-      image: codeberg.org/eoelab/cenv:alpine
-      volumes:
-        - kaniko-cache:/cache
-    needs: [Gpu, Renv]
-    if: always()
-    steps:
-      - name: Clean kaniko cache (older than 14 days)
-        run: |
-          find /cache -type f -mtime +14 -delete
-          find /cache -type d -empty -delete
