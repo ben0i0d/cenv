@@ -1,4 +1,4 @@
-FROM ghcr.io/eoeair/cenv:cpp AS builder
+FROM codeberg.org/eoelab/cenv:cpp AS builder
 
 USER root
 
@@ -8,7 +8,7 @@ RUN apt-get update --yes && apt-get install --yes cmake build-essential git && \
     cmake -B build -DBUILD_SHARED_LIBS=OFF && cmake --build build --config Release -j $(nproc) && \
     mv build/bin/* /usr/local/bin/
 
-FROM ghcr.io/eoeair/cenv:debian
+FROM codeberg.org/eoelab/cenv:debian
 
 EXPOSE 80
 

@@ -1,4 +1,4 @@
-FROM ghcr.io/eoeair/cenv:alpine
+FROM codeberg.org/eoelab/cenv:alpine
 
 # install mpremote
 RUN apk add py3-pip picocom && \

@@ -3,7 +3,7 @@
 {
 	"name": "c",
 
-	"image": "ghcr.io/eoeair/cenv:c",
+	"image": "codeberg.org/eoelab/cenv:c",
 
 	// Configure vscode-extensions.
 	"customizations": {

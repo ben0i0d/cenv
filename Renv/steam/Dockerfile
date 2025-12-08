@@ -1,4 +1,4 @@
-FROM ghcr.io/eoeair/cenv:debian
+FROM codeberg.org/eoelab/cenv:debian
 
 # Configure environment
 ENV USER=steam \

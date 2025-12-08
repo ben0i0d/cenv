@@ -1,4 +1,4 @@
-FROM ghcr.io/eoeair/cenv:debian
+FROM codeberg.org/eoelab/cenv:debian
 
 ENV PATH="/opt/base/bin:${PATH}"
 

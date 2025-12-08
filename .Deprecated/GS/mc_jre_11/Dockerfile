@@ -1,4 +1,4 @@
-FROM ghcr.io/eoeair/cenv:debian AS builder
+FROM codeberg.org/eoelab/cenv:debian AS builder
 
 USER root
 
@@ -7,7 +7,7 @@ RUN apt-get update --yes && apt-get install --yes gnupg curl && \
     echo "deb [signed-by=/usr/share/keyrings/azul.gpg] https://repos.azul.com/zulu/deb stable main" | tee /etc/apt/sources.list.d/zulu.list && \
     apt-get update --yes && apt-get install --yes --no-install-recommends zulu11-ca-jre-headless  
 
-FROM ghcr.io/eoeair/cenv:debian
+FROM codeberg.org/eoelab/cenv:debian
 
 COPY --from=builder /usr/lib/jvm/zulu11/ /usr/lib/jvm/zulu11/
 

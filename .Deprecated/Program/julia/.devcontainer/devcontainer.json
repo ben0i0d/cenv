@@ -3,7 +3,7 @@
 {
 	"name": "julia",
 	
-	"image": "ghcr.io/eoeair/cenv:julia",
+	"image": "codeberg.org/eoelab/cenv:julia",
 
 	// Configure vscode-extensions.
 	"customizations": {

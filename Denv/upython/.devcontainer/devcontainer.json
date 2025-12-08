@@ -3,7 +3,7 @@
 {
 	"name": "upython",
 	
-	"image": "ghcr.io/eoeair/cenv:upython",
+	"image": "codeberg.org/eoelab/cenv:upython",
 	"runArgs": ["--device=/dev/ttyACM0", "--group-add=keep-groups"],
 	// Configure vscode-extensions.
 	"customizations": {

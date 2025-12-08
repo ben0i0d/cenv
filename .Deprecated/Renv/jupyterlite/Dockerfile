@@ -1,4 +1,4 @@
-FROM ghcr.io/eoeair/cenv:python
+FROM codeberg.org/eoelab/cenv:python
 
 EXPOSE 8000
 

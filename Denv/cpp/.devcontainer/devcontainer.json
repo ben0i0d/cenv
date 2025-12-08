@@ -3,7 +3,7 @@
 {
 	"name": "cpp",
 	
-	"image": "ghcr.io/eoeair/cenv:cpp",
+	"image": "codeberg.org/eoelab/cenv:cpp",
 
 	// Configure vscode-extensions.
 	"customizations": {

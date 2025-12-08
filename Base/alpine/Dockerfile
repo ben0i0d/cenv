@@ -1,4 +1,4 @@
-FROM ghcr.io/eoeair/cenv:edge
+FROM codeberg.org/eoelab/cenv:edge
 
 ENV LANG=C.UTF-8 \
     LC_ALL=C.UTF-8

@@ -3,7 +3,7 @@
 {
 	"name": "zig",
 
-	"image": "ghcr.io/eoeair/cenv:zig",
+	"image": "codeberg.org/eoelab/cenv:zig",
 
 	// Configure vscode-extensions.
 	"customizations": {

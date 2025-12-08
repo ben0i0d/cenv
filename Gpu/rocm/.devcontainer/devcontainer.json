@@ -2,7 +2,7 @@
 // For config options, see the README at: https://github.com/devcontainers/templates/tree/main/src/debian
 {
 	"name": "rocm",
-	"image": "ghcr.io/eoeair/cenv:rocm",
+	"image": "codeberg.org/eoelab/cenv:rocm",
 	"runArgs": ["--device=/dev/kfd", "--device=/dev/dri", "--shm-size=8G", "--group-add=keep-groups"],
 	// Configure vscode-extensions.
 	"customizations": {

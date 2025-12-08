@@ -1,6 +1,6 @@
 # Cenv
 
-**ghcr.io: ghcr.io/eoeair/cenv:TAG**
+**codeberg.org: codeberg.org/eoelab/cenv:TAG**
 
 ## Platform
 * ARCH: x86_64

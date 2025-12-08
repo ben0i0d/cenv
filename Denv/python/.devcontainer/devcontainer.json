@@ -3,7 +3,7 @@
 {
 	"name": "python",
 	
-	"image": "ghcr.io/eoeair/cenv:python",
+	"image": "codeberg.org/eoelab/cenv:python",
 	// Configure vscode-extensions.
 	"customizations": {
 		"vscode": {

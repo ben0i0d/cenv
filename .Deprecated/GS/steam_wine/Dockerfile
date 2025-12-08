@@ -1,4 +1,4 @@
-FROM ghcr.io/eoeair/cenv:steam
+FROM codeberg.org/eoelab/cenv:steam
 
 USER root
 

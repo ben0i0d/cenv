@@ -3,7 +3,7 @@
 {
 	"name": "JS",
 	
-	"image": "ghcr.io/eoeair/cenv:js",
+	"image": "codeberg.org/eoelab/cenv:js",
 
 	// Configure vscode-extensions.
 	"customizations": {

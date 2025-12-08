@@ -1,0 +1,20 @@
+# This is a basic workflow to help you get started with Actions
+
+name: Mirror
+
+# Controls when the workflow will run
+on:
+  # Allows you to run this workflow manually from the Actions tab
+  workflow_dispatch:
+
+# A workflow run is made up of one or more jobs that can run sequentially or in parallel
+jobs:
+  Mirror:
+    runs-on: runner
+    container:
+      image: ghcr.io/eoeair/cenv:crane
+    steps:
+      - run: crane auth login codeberg.org -u ${{ vars.PM_USER }} -p ${{ secrets.PM_PAT }}
+      - run: crane copy docker.io/alpine:edge codeberg.org/${{ forgejo.repository }}:edge
+      - run: crane copy docker.io/library/debian:testing-slim codeberg.org/${{ forgejo.repository }}:testing-slim
+      - run: crane copy ghcr.io/kaniko-build/dist/chainguard-dev-kaniko/executor:latest-debug codeberg.org/${{ forgejo.repository }}:kaniko

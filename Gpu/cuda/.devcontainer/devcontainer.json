@@ -2,7 +2,7 @@
 // For config options, see the README at: https://github.com/devcontainers/templates/tree/main/src/debian
 {
 	"name": "cuda",
-	"image": "ghcr.io/eoeair/cenv:cuda",
+	"image": "codeberg.org/eoelab/cenv:cuda",
 	"runArgs": ["--device=nvidia.com/gpu=all", "--shm-size=8G", "--group-add=keep-groups"],
 	// Configure vscode-extensions.
 	"customizations": {

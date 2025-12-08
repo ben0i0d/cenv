@@ -1,4 +1,4 @@
-FROM ghcr.io/eoeair/cenv:python
+FROM codeberg.org/eoelab/cenv:python
 
 # Install cuda repo
 RUN apt-get update --yes && apt-get install --yes wget && \

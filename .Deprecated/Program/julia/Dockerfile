@@ -1,10 +1,10 @@
-FROM ghcr.io/eoeair/cenv:python AS builder
+FROM codeberg.org/eoelab/cenv:python AS builder
 
 # install Julia packages in /opt/julias
 RUN apt-get update --yes && apt-get install --yes --no-install-recommends gnupg && \
     pip install jill && jill install --confirm 1
 
-FROM ghcr.io/eoeair/cenv:debian
+FROM codeberg.org/eoelab/cenv:debian
 
 ARG JULIA_MIRROR
 

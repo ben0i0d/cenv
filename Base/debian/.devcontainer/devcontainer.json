@@ -2,5 +2,5 @@
 // For config options, see the README at: https://github.com/devcontainers/templates/tree/main/src/debian
 {
 	"name": "debian",
-	"image": "ghcr.io/eoeair/cenv:debian" 
+	"image": "codeberg.org/eoelab/cenv:debian" 
 }

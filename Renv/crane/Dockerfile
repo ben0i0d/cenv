@@ -1,3 +1,3 @@
-FROM ghcr.io/eoeair/cenv:alpine
+FROM codeberg.org/eoelab/cenv:alpine
 
 RUN apk add --no-cache crane buildah netavark passt
