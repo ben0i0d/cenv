@@ -8,7 +8,7 @@
 	// Configure vscode-extensions.
 	"customizations": {
 		"vscode": {
-		  "extensions": ["ms-vscode.cpptools-extension-pack", "codeium.codeium"]
+		  "extensions": ["ms-vscode.cpptools-extension-pack"]
 		}
 	  },
 	"postCreateCommand": "apt-get update && apt-get install -y git && ssh-keyscan github.com >> ~/.ssh/known_hosts"
