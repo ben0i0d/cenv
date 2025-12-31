@@ -16,5 +16,5 @@ jobs:
     steps:
       - run: crane auth login codeberg.org -u ${{ vars.PM_USER }} -p ${{ secrets.PM_PAT }}
       - run: crane copy docker.io/alpine:edge codeberg.org/${{ forgejo.repository }}:edge
-      - run: crane copy docker.io/library/debian:testing-slim codeberg.org/${{ forgejo.repository }}:testing-slim
+      - run: crane copy docker.io/library/debian:sid-slim codeberg.org/${{ forgejo.repository }}:sid-slim
       - run: crane copy ghcr.io/kaniko-build/dist/chainguard-dev-kaniko/executor:latest-debug codeberg.org/${{ forgejo.repository }}:kaniko

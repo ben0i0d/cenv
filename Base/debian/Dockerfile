@@ -1,4 +1,4 @@
-FROM codeberg.org/eoelab/cenv:testing-slim
+FROM codeberg.org/eoelab/cenv:sid-slim
 
 ENV DEBIAN_FRONTEND=noninteractive \
     LANG=C.UTF-8 \
