@@ -79,6 +79,24 @@ jobs:
             --destination codeberg.org/${{ forgejo.repository }}:${{ matrix.tag }} \
             --single-snapshot
 
+  Jupyter:
+    runs-on: runner
+    container:
+      image: codeberg.org/eoelab/cenv:kaniko
+    needs: Denv
+    strategy:
+      matrix:
+        tag: [python-nb]
+    steps:
+      - *checkout
+      - *login
+      - run: |
+          /kaniko/executor \
+            --context Jupyter/${{ matrix.tag }} \
+            --dockerfile Jupyter/${{ matrix.tag }}/Dockerfile \
+            --destination codeberg.org/${{ forgejo.repository }}:${{ matrix.tag }} \
+            --single-snapshot
+
   Renv:
     runs-on: runner
     container:

@@ -1,0 +1,5 @@
+FROM codeberg.org/eoelab/jupyter:python
+
+RUN pip install ansible-kernel && \
+    python -m ansible_kernel.install && \
+    pip cache purge
