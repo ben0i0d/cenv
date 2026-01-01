@@ -48,6 +48,7 @@
 * `Denv` : development environment
 * `Renv`: runtime environment
 * `Gpu`: gpu environment
+* `Jupyter`: Jupyterlab environment
 
 ```mermaid
 graph LR
@@ -64,6 +65,8 @@ D-->DE(Upython)
 
 DC-->G{Gpu}-->GA(Rocm)
 G-->GB(CUDA)
+
+DC-->J{Jupyter}-->JA(Python-nb)
 
 B-->R{RENV}
 R-->RA(Zine)
