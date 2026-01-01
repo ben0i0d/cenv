@@ -1,13 +1,13 @@
-FROM codeberg.org/eoelab/cenv:debian
+FROM codeberg.org/eoelab/cenv:alpine
 
 EXPOSE 80
 
-ENV USER=root
+ENV USER=root \
+    DISPLAY=:0
 
-RUN apt-get update --yes && \
-    apt-get install --yes --no-install-recommends \
-      openbox xterm \
-      tigervnc-standalone-server novnc websockify xfonts-base && \
-    apt-get clean && rm -rf /var/lib/apt/lists/*
+RUN apk update && apk add --no-cache \
+        xvfb x11vnc fluxbox novnc websockify \
+        xterm ttf-dejavu && \
+    ln -s /usr/share/novnc/vnc.html /usr/share/novnc/index.html
 
-CMD ["bash", "-c", "vncserver :0 -geometry 1440x900 -SecurityTypes None && websockify --web=/usr/share/novnc/ 80 localhost:5900"]
+CMD ["sh", "-c", "Xvfb :0 -screen 0 1440x900x24 & sleep 2 && fluxbox & sleep 2 && x11vnc -display :0 -forever -shared -nopw -quiet & websockify --web=/usr/share/novnc/ 80 localhost:5900"]

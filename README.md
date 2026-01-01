@@ -5,7 +5,7 @@
 ## Platform
 * ARCH: x86_64
 * OS: 
-    * debian testing
+    * debian sid
     * alpine edge
 * ROCM: 7.1.1
 * CUDA: >= 13.1
