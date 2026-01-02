@@ -1,6 +1,6 @@
 FROM codeberg.org/eoelab/cenv:alpine AS builder
 
-ENV ZINE_VERSION=v0.11.1
+ENV ZINE_VERSION=v0.11.2
 
 WORKDIR /tmp
 
