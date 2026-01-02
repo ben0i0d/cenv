@@ -30,7 +30,7 @@
     1. **Make sure you have installed the [NVIDIA driver](https://docs.nvidia.com/datacenter/cloud-native/container-toolkit/install-guide.html#nvidia-drivers) for your Linux Distribution**
     2. **Note that you do not need to install the CUDA Toolkit on the host system, but the NVIDIA driver needs to be installed**
     3. For instructions on getting started with the NVIDIA Container Toolkit, refer to the [installation guide](https://docs.nvidia.com/datacenter/cloud-native/container-toolkit/install-guide.html#installation-guide)
-    4. for china,maybe need a mirror site: run `sed -i 's/developer.download.nvidia.com/developer.download.nvidia.cn/g' /etc/apt/sources.list.d/cuda-debian12-x86_64.list`
+    4. for china,maybe need a mirror site: run `sed -i 's/developer.download.nvidia.com/developer.download.nvidia.cn/g' /etc/apt/sources.list.d/cuda-debian13-x86_64.list`
 5. rocm: 
     1. run `sudo apt install rocminfo`
     2. run `sudo usermod -aG video,render $USER` before use container, add youself to `video`,`render`
@@ -45,36 +45,60 @@
         1. run `pip install --pre torch torchvision --index-url https://download.pytorch.org/whl/nightly/rocm7.0`
 
 ## Image dependencies
-* `Denv` : development environment
-* `Renv`: runtime environment
-* `Gpu`: gpu environment
+* `Denv` : Development environment
+* `Renv`: Runtime environment
+* `Gpu`: GPU environment
 * `Jupyter`: Jupyterlab environment
 
 ```mermaid
 graph LR
-Debian-->B{Base}
-Alpine-->B
 
-B-->D{Denv}
-D-->DA(C)
-D-->DB(Cpp)
-D-->DF(Debforge)
-D-->DC(Python)
-D-->DD(Zig)
-D-->DE(Upython)
+B{Base} --> Alpine
+B --> Debian
 
-DC-->G{Gpu}-->GA(Rocm)
-G-->GB(CUDA)
+subgraph Alpine
+    subgraph AD[Denv]
+    upython
+    zig
+    end
+    
+    subgraph AR[Renv]
+    bipes
+    crane
+    jre_21
+    llama
+    novnc
+    upypi
+    zine
+    end
+end
 
-DC-->J{Jupyter}-->JA(Python-nb)
+subgraph Debian
+    subgraph DD[Denv]
+    c
+    cpp
+    python
+    end
 
-B-->R{RENV}
-R-->RA(Zine)
-R-->RB(Steam)
-R-->RC(JRE_21)
-R-->RD(Novnc)
-R-->RE(Crane)
+    subgraph DR[Renv]
+    mc_be
+    steam
+    end
+
+    python-->Gpu
+    subgraph Gpu
+    rocm
+    cuda
+    end
+
+    python-->Jupyter
+    subgraph Jupyter
+    python-nb
+    end
+end
 ```
+
+
 
 ## Mirror source
 * debian ustc：https://mirrors.ustc.edu.cn/help/debian.html

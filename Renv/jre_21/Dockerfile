@@ -1,8 +1,5 @@
-FROM codeberg.org/eoelab/cenv:debian
+FROM codeberg.org/eoelab/cenv:alpine
 
-# Tested on Alpine. For vanilla, Forge runs normally. As an experimental consideration, we are thinking about switching to Alpine.
-
-RUN apt-get update --yes && apt-get install --yes --no-install-recommends openjdk-21-jre-headless && \
-    apt-get clean && rm -rf /var/lib/apt/lists/*
+RUN apk add --no-cache openjdk21-jre-headless
 
 WORKDIR /workspace
