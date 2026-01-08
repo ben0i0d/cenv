@@ -3,7 +3,6 @@ FROM codeberg.org/eoelab/cenv:debian
 # Configure environment
 ENV USER=steam \
     UID=1000 \
-    GID=100 \
     HOME="/home/steam"
 
 # Install steamcmd
@@ -11,10 +10,13 @@ RUN sed -i 's/main/main contrib non-free non-free-firmware/g' /etc/apt/sources.l
     echo steam steam/question select "I AGREE" | debconf-set-selections && \
     echo steam steam/license note '' | debconf-set-selections && \
     dpkg --add-architecture i386 && \
-    apt-get update --yes && apt-get install --yes steamcmd ca-certificates && \
-    apt-get clean && rm -rf /var/lib/apt/lists/* && \
+    apt-get update && apt-get install -y steamcmd ca-certificates openssh-server && apt-get clean && rm -rf /var/lib/apt/lists/* && \
+    # Create authorize file
+    mkdir -p /root/.ssh && touch /root/.ssh/authorized_keys && \
     # Create user
     useradd --no-log-init --create-home --shell /bin/bash --uid "${UID}" --no-user-group "${USER}" && \
+    # Authorize /workspace to steam
+    mkdir -p /workspace && chown "${USER}" /workspace && \
     # let steamcmd directly run
     ln -s /usr/games/steamcmd /usr/bin/steamcmd
 

@@ -17,7 +17,7 @@ COPY jupyter_server_config.py docker_healthcheck.py /etc/jupyter/
 COPY profile /etc/
 
 # install base packages
-RUN apt-get update --yes && apt-get install --yes --no-install-recommends unzip python3-venv && \
+RUN apt-get update --yes && apt-get install --yes --no-install-recommends unzip && \
     apt-get clean && rm -rf /var/lib/apt/lists/* && \
     # enhance scripts & repair HEALTHCHECK permission denied
     chmod a+rx /usr/local/bin/* /etc/jupyter/docker_healthcheck.py  && \
