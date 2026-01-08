@@ -1,8 +1,4 @@
-# jupyter-image-stacks
-
 ## Jupyterlab Image stacks for Data Science
-
-**codeberg.org: codeberg.org/eoelab/cenv:TAG**
 
 ### HOW TO USE
 
@@ -22,11 +18,10 @@ zh_font = FontProperties(fname="/usr/share/fonts/truetype/wqy/wqy-zenhei.ttc")
 plt.rcParams["font.family"] = zh_font.get_name()
 ```
 ### List of images that are currently being built
-* Jupyter: benchmarking against the jupyter official minimal-notebook image
+* Python-nb: benchmarking against the jupyter official minimal-notebook image
     * Description
         1. Upstream has switched to `debian:sid-slim`
-        2. Provided packages: .zip extraction
-        3. Supports Python
+        2. Supports Python
 
 ### List of plugins
 

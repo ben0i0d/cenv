@@ -9,7 +9,8 @@ from pathlib import Path
 from jupyter_core.paths import jupyter_data_dir
 
 c = get_config()  # noqa: F821
-c.ServerApp.ip = "0.0.0.0"
+# Listen on all interfaces (ipv4 and ipv6)
+c.ServerApp.ip = ""
 c.ServerApp.open_browser = False
 # to be root container
 c.ServerApp.allow_root = True
@@ -21,6 +22,8 @@ c.FileContentsManager.always_delete_dir = True
 
 # https://github.com/jupyter/notebook/issues/7409
 c.ContentsManager.hide_globs = []
+# https://github.com/jupyter/notebook/issues/3130
+c.FileContentsManager.delete_to_trash = False
 
 # Generate a self-signed certificate
 OPENSSL_CONFIG = """\
