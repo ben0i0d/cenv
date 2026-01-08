@@ -10,5 +10,5 @@
 			"extensions": ["ms-python.python", "ms-python.vscode-pylance", "ms-toolsai.jupyter"]
 		}
 	  },
-	"postCreateCommand": "apt-get update --yes && apt-get install --yes git && ssh-keyscan github.com >> ~/.ssh/known_hosts"
+	"postCreateCommand": "sh .devcontainer/setup.sh"
 }

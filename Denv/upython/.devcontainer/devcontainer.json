@@ -11,5 +11,5 @@
 		  "extensions": ["ms-pyright.pyright", "davescodemusings.mpremote"]
 		}
 	  },
-	"postCreateCommand": "apk add git openssh-client && pip install micropython-rp2-pico-stubs --break-system-packages && ssh-keyscan github.com >> ~/.ssh/known_hosts"
+	"postCreateCommand": "sh .devcontainer/setup.sh"
 }

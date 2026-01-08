@@ -2,5 +2,6 @@
 // For config options, see the README at: https://github.com/devcontainers/templates/tree/main/src/debian
 {
 	"name": "alpine",
-	"image": "codeberg.org/eoelab/cenv:alpine" 
+	"image": "codeberg.org/eoelab/cenv:alpine",
+	"postCreateCommand": "sh .devcontainer/setup.sh"
 }
