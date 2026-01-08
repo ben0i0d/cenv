@@ -7,7 +7,7 @@ USER root
 
 RUN sed -i 's/dl-cdn.alpinelinux.org/mirrors.ustc.edu.cn/g' /etc/apk/repositories && \
     # Install tini for process management
-    apk add --no-cache tini openssh-server nano && \
+    apk add --no-cache tini openssh-server nano bash && \
     # generate host keys
     ssh-keygen -A && \
     # Create necessary dir&file
@@ -15,4 +15,4 @@ RUN sed -i 's/dl-cdn.alpinelinux.org/mirrors.ustc.edu.cn/g' /etc/apk/repositorie
 
 # Configure container startup
 ENTRYPOINT ["tini", "-g", "--"]
-CMD ["sh"]
+CMD ["bash"]
