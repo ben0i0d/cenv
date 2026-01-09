@@ -32,17 +32,15 @@
     3. For instructions on getting started with the NVIDIA Container Toolkit, refer to the [installation guide](https://docs.nvidia.com/datacenter/cloud-native/container-toolkit/install-guide.html#installation-guide)
     4. for china,maybe need a mirror site: run `sed -i 's/developer.download.nvidia.com/developer.download.nvidia.cn/g' /etc/apt/sources.list.d/cuda-debian13-x86_64.list`
 5. rocm: 
-    1. run `sudo apt install rocminfo`
-    2. run `sudo usermod -aG video,render $USER` before use container, add youself to `video`,`render`
-    3. not include any package, please install what you want(`apt install rocm`)
-    4. how to run jax/flax:
-        1. apt install hipsolver hipfft miopen-hip rccl rocm-llvm rocprofiler-sdk hsa-amd-aqlprofile libamd-comgr2 libdw1  (***I just want to minimize runtime; you can absolutely do a full ROCm installation.***)
+    1. run `sudo usermod -aG video,render $USER` before use container, add youself to `video`,`render`
+    2. how to run jax/flax:
+        1. apt install rocm
         2. see [rocm-jax](https://github.com/ROCm/rocm-jax/releases)
-    5. for china,maybe need a mirror site:
+    3. for china,maybe need a mirror site:
         1. run `sed -i 's/repo.radeon.com/radeon.geekery.cn/g' /etc/apt/sources.list.d/amdgpu.list`
         2. run `sed -i 's/repo.radeon.com/radeon.geekery.cn/g' /etc/apt/sources.list.d/rocm.list`
-    6. how to run pytorch: PyTorch doesn’t require user-space ROCm support;
-        1. run `pip install --pre torch torchvision --index-url https://download.pytorch.org/whl/nightly/rocm7.0`
+    4. how to run pytorch: PyTorch doesn’t require user-space ROCm support;
+        1. run `pip install --pre torch torchvision --index-url https://download.pytorch.org/whl/nightly/rocm7.1`
 
 ## Image dependencies
 * `Denv` : Development environment
