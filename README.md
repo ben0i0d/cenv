@@ -92,8 +92,9 @@ subgraph Debian
 
     python-->Gpu
     subgraph Gpu
-    rocm
     cuda
+    oneapi
+    rocm
     end
 
     python-->Jupyter
