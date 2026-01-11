@@ -13,3 +13,4 @@ apk add git openssh-client
 # Add GitHub's SSH host key
 mkdir -p /root/.ssh
 ssh-keyscan github.com >> ~/.ssh/known_hosts
+ssh-keyscan codeberg.org >> ~/.ssh/known_hosts
