@@ -71,7 +71,6 @@ subgraph Alpine
     bipes
     crane
     jre_21
-    llama
     novnc
     upypi
     zine
