@@ -10,4 +10,5 @@ FROM codeberg.org/eoelab/cenv:python
 ENV LD_LIBRARY_PATH=/opt/rocm/lib
 
 # Install ROCm repo
+COPY --from=builder /etc/apt/keyrings/rocm.gpg /etc/apt/keyrings/rocm.gpg
 COPY --from=builder /etc/apt/sources.list.d/amdgpu.list /etc/apt/sources.list.d/rocm.list /etc/apt/sources.list.d/
