@@ -2,15 +2,13 @@ FROM codeberg.org/eoelab/cenv:python AS builder
 
 # install Julia packages in /opt/julias
 RUN apt-get update --yes && apt-get install --yes --no-install-recommends gnupg && \
-    pip install jill && jill install --confirm 1
+    pip install jill && jill install --upstream USTC --confirm 1.12
 
 FROM codeberg.org/eoelab/cenv:debian
 
-ARG JULIA_MIRROR
-
 COPY --from=builder /opt/julias/ /opt/julias/
 
-ENV JULIA_PKG_SERVER=${JULIA_MIRROR} \
-    JULIA_NUM_THREADS=8
+ENV JULIA_PKG_SERVER=https://mirrors.cernet.edu.cn/julia \
+    JULIA_NUM_THREADS=auto
 
-RUN ln -s "`find /opt/julias -name 'bin'`/julia" /usr/local/bin/julia 
+RUN ln -sf $(find /opt/julias -type f -path '*/bin/julia' | head -n1) /usr/local/bin/julia

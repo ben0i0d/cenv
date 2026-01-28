@@ -81,6 +81,7 @@ subgraph Debian
     subgraph DD[Denv]
     c
     cpp
+    julia
     python
     end
 

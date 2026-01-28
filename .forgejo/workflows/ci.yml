@@ -50,7 +50,7 @@ jobs:
     needs: Base
     strategy:
       matrix:
-        tag: [c, cpp, python, upython, zig]
+        tag: [c, cpp, julia, python, upython, zig]
     steps:
       - *checkout
       - *login
