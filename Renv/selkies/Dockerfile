@@ -17,15 +17,33 @@ ARG SELKIES_VERSION=1.6.2
 
 EXPOSE 8080
 
-COPY --from=builder /opt/gst-web /opt/gstreamer /opt/selkies_gstreamer-${SELKIES_VERSION}-py3-none-any.whl /opt
-COPY --from=builder /opt/selkies_joystick_interposer.so /usr/local/lib
+COPY --from=builder /opt/gst-web /opt/gst-web
+#COPY --from=builder /opt/gstreamer /opt/gstreamer
+COPY --from=builder /opt/selkies_gstreamer-${SELKIES_VERSION}-py3-none-any.whl /opt/
+COPY --from=builder /opt/selkies_joystick_interposer.so /usr/local/lib/
 COPY start.sh /usr/local/bin/
 
 RUN apt-get update --yes && apt-get install --yes python3-pip \
         # for evdev
         linux-libc-dev gcc python3-dev \
         # for x11
-        xvfb && \
+        xvfb \
+        # for gi
+        python3-gi python3-gst-1.0 \
+        # for GstWebRTC
+        gstreamer1.0-plugins-bad gir1.2-gst-plugins-bad-1.0 \
+        # for distutils
+        python3-setuptools \
+        # for gstreamer plugins: ['nice', 'x264']
+        gstreamer1.0-nice gstreamer1.0-plugins-ugly \
+        # for xsel
+        xsel \
+        # fot turnserver
+        coturn \
+        # for pipewire
+        pipewire \
+        # for xfce4
+        xfce4 && \
     pip install /opt/selkies_gstreamer-${SELKIES_VERSION}-py3-none-any.whl --break-system-packages && rm /opt/selkies_gstreamer-${SELKIES_VERSION}-py3-none-any.whl && pip cache purge && \
     chmod +x /usr/local/bin/start.sh
 

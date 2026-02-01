@@ -26,27 +26,32 @@ echo 'Waiting for X Socket' && until [ -S "/tmp/.X11-unix/X${DISPLAY#*:}" ]; do 
 # /usr/bin/pulseaudio --verbose --log-target=file:/tmp/pulseaudio_selkies.log --disallow-exit &
 
 # Initialize PipeWire
-# export PIPEWIRE_LATENCY="128/48000"
-# export DISABLE_RTKIT="y"
-# export XDG_RUNTIME_DIR="${XDG_RUNTIME_DIR:-/tmp}"
-# export PIPEWIRE_RUNTIME_DIR="${PIPEWIRE_RUNTIME_DIR:-${XDG_RUNTIME_DIR:-/tmp}}"
-# export PULSE_RUNTIME_PATH="${PULSE_RUNTIME_PATH:-${XDG_RUNTIME_DIR:-/tmp}/pulse}"
-# export PULSE_SERVER="${PULSE_SERVER:-unix:${PULSE_RUNTIME_PATH:-${XDG_RUNTIME_DIR:-/tmp}/pulse}/native}"
-# pipewire &
-# wireplumber &
-# pipewire-pulse &
+export PIPEWIRE_LATENCY="128/48000"
+export DISABLE_RTKIT="y"
+export XDG_RUNTIME_DIR="${XDG_RUNTIME_DIR:-/tmp}"
+export PIPEWIRE_RUNTIME_DIR="${PIPEWIRE_RUNTIME_DIR:-${XDG_RUNTIME_DIR:-/tmp}}"
+export PULSE_RUNTIME_PATH="${PULSE_RUNTIME_PATH:-${XDG_RUNTIME_DIR:-/tmp}/pulse}"
+export PULSE_SERVER="${PULSE_SERVER:-unix:${PULSE_RUNTIME_PATH:-${XDG_RUNTIME_DIR:-/tmp}/pulse}/native}"
+pipewire &
+wireplumber &
+pipewire-pulse &
 
 # Replace this line with your desktop environment session or skip this line if already running, use VirtualGL `vglrun +wm xfce4-session` here if needed
-# [ "${START_XFCE4:-true}" = "true" ] && rm -rf ~/.config/xfce4 && xfce4-session &
+[ "${START_XFCE4:-true}" = "true" ] && rm -rf ~/.config/xfce4 && xfce4-session &
 
 # Initialize the GStreamer environment after setting GSTREAMER_PATH to the path of your GStreamer directory
-export GST_DEBUG="*:2"
-export GSTREAMER_PATH=/opt/gstreamer
-. /opt/gstreamer/gst-env
+#export GST_DEBUG="*:2"
+#export GSTREAMER_PATH=/opt/gstreamer
+#. /opt/gstreamer/gst-env
 # Replace with your wanted resolution if using without resize, DO NOT USE if there is a physical display
 # selkies-gstreamer-resize 1920x1080
 
 # Starts the remote desktop process
 # Change `--encoder=` to `nvh264enc`, `vah264enc`, `vp9enc`, or `vp8enc` for different video codecs or hardware encoders
 # DO NOT set `--enable_resize=true` if there is a physical display
-selkies-gstreamer --addr=0.0.0.0 --port=8080 --enable_https=false --basic_auth_user=user --basic_auth_password=mypasswd --encoder=x264enc --enable_resize=false &
+selkies-gstreamer \
+    --addr=0.0.0.0 --port=8080 \
+    --enable_https=false \
+    --basic_auth_user=user --basic_auth_password=mypasswd \
+    --encoder=x264enc \
+    --enable_resize=false
