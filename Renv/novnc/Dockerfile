@@ -5,7 +5,7 @@ EXPOSE 80
 ENV USER=root \
     DISPLAY=:0
 
-RUN apk update && apk add --no-cache \
+RUN apk add --no-cache \
         xvfb x11vnc fluxbox novnc websockify \
         xterm ttf-dejavu && \
     ln -s /usr/share/novnc/vnc.html /usr/share/novnc/index.html
