@@ -72,7 +72,6 @@ subgraph Alpine
     crane
     jre_21
     novnc
-    upypi
     zine
     end
 end
