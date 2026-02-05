@@ -7,7 +7,7 @@
 * OS: 
     * debian sid
     * alpine edge
-* ROCM: 7.1.1
+* ROCM: 7.2.0
 * CUDA: >= 13.1
 ## Container Usage
 1. oci: `podman run -it`, See the `runArgs` section of the devcontainer config file for more options.

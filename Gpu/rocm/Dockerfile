@@ -1,8 +1,8 @@
 FROM codeberg.org/eoelab/cenv:python as builder
 
 RUN apt-get update --yes && apt-get install --yes wget && \
-    wget https://repo.radeon.com/amdgpu-install/7.1.1/ubuntu/noble/amdgpu-install_7.1.1.70101-1_all.deb && \
-    apt install --yes ./amdgpu-install_7.1.1.70101-1_all.deb
+    wget https://repo.radeon.com/amdgpu-install/7.2/ubuntu/noble/amdgpu-install_7.2.70200-1_all.deb && \
+    apt install --yes ./amdgpu-install_7.2.70200-1_all.deb
 
 FROM codeberg.org/eoelab/cenv:python
 
