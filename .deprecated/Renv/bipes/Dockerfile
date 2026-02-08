@@ -1,7 +1,7 @@
 FROM codeberg.org/eoelab/cenv:alpine AS builder
 
 RUN apk add --no-cache git && \
-    git clone --depth 1 -b offline --recurse-submodules --shallow-submodules https://github.com/BIPES/BIPES.git || true
+    git clone --depth 1 -b offline --recurse-submodules --shallow-submodules https://github.com/FreakStudioCN/BIPES.git || true
 
 FROM codeberg.org/eoelab/cenv:alpine
 

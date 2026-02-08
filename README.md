@@ -68,7 +68,6 @@ subgraph Alpine
     end
     
     subgraph AR[Renv]
-    bipes
     crane
     jre_21
     novnc

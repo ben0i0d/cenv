@@ -104,7 +104,7 @@ jobs:
     needs: Base
     strategy:
       matrix:
-        tag: [bipes, crane, jre_21, mc_be, novnc, steam, zine]
+        tag: [crane, jre_21, mc_be, novnc, steam, zine]
     steps:
       - *checkout
       - *login
