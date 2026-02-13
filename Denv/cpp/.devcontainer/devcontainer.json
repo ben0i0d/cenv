@@ -5,6 +5,14 @@
 	
 	"image": "codeberg.org/eoelab/cenv:cpp",
 
+	// Support for ccache store
+	"mounts": ["source=ccache,target=/ccache,type=volume"],
+	// cmake
+	"containerEnv": {
+		"CMAKE_C_COMPILER_LAUNCHER": "ccache",
+		"CMAKE_CXX_COMPILER_LAUNCHER": "ccache"
+	},
+
 	// Configure vscode-extensions.
 	"customizations": {
 		"vscode": {
