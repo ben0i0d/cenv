@@ -83,7 +83,6 @@ B --> Debian
 subgraph Alpine
     subgraph AD[Denv]
     upython
-    zig
     end
     
     subgraph AR[Renv]
@@ -100,6 +99,7 @@ subgraph Debian
     cpp
     julia
     python
+    zig
     end
 
     subgraph DR[Renv]
@@ -121,7 +121,9 @@ subgraph Debian
 end
 ```
 
-
-
 ## Mirror source
+* alpine ustc：https://mirrors.ustc.edu.cn/help/alpine.html
 * debian ustc：https://mirrors.ustc.edu.cn/help/debian.html
+* julia cernet：https://mirrors.cernet.edu.cn/julia
+* pip ustc：https://mirrors.ustc.edu.cn/help/pypi.html
+* zig zigmirror：https://zigmirror.com
