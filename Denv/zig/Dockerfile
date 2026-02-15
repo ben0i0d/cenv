@@ -18,3 +18,7 @@ FROM codeberg.org/eoelab/cenv:debian
 ENV PATH="/opt/zig:${PATH}"
 
 COPY --from=builder zig /opt/zig
+
+# spport zls
+RUN apt-get update --yes && apt-get install --yes tar xz-utils && \
+    apt-get clean && rm -rf /var/lib/apt/lists/*
