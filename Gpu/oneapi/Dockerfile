@@ -10,5 +10,5 @@ RUN apt-get update && apt-get install -y wget curl gnupg2 && \
 
 FROM codeberg.org/eoelab/cenv:python
 # Install intel-graphics & oneapi repo
-COPY --from=builder /etc/apt/sources.list.d/intel-graphics.list /etc/apt/sources.list.d/oneAPI.list /etc/apt/sources.list.d/
-COPY --from=builder /usr/share/keyrings/intel-graphics.gpg /usr/share/keyrings/oneapi.gpg /usr/share/keyrings/
+COPY --from=builder /usr/share/keyrings /usr/share/keyrings
+COPY --from=builder /etc/apt/sources.list.d /etc/apt/sources.list.d

@@ -7,5 +7,5 @@ RUN apt-get update --yes && apt-get install --yes wget && \
 FROM codeberg.org/eoelab/cenv:python
 
 # Install cuda repo
-COPY --from=builder /usr/share/keyrings/cuda-archive-keyring.gpg /usr/share/keyrings/cuda-archive-keyring.gpg
-COPY --from=builder /etc/apt/sources.list.d/cuda-debian13-x86_64.list /etc/apt/sources.list.d/
+COPY --from=builder /usr/share/keyrings /usr/share/keyrings
+COPY --from=builder /etc/apt/sources.list.d /etc/apt/sources.list.d

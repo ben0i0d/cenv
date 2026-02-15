@@ -1,1 +1,1 @@
-../../../.setup/alpine.sh
+../../../.setup/debian.sh
