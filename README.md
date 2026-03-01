@@ -43,7 +43,7 @@
         1. run `sed -i 's/repo.radeon.com/radeon.geekery.cn/g' /etc/apt/sources.list.d/amdgpu.list`
         2. run `sed -i 's/repo.radeon.com/radeon.geekery.cn/g' /etc/apt/sources.list.d/rocm.list`
     4. how to run pytorch: PyTorch doesn’t require user-space ROCm support;
-        1. run `pip install --pre torch torchvision --index-url https://download.pytorch.org/whl/nightly/rocm7.1`
+        1. see [pytorch](https://pytorch.org/)
 3. oneapi:
     1. Install the compute-related packages: apt install libze-intel-gpu1 libze1 intel-metrics-discovery intel-opencl-icd clinfo intel-gsc
     2. Install the media-related packages(Optional): apt install intel-media-va-driver-non-free libmfx-gen1 libvpl2 libvpl-tools libva-glx2 va-driver-all vainfo
