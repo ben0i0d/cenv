@@ -5,7 +5,7 @@ ENV ZIG_INDEX="https://ziglang.org/download/index.json" \
 
 # for master: VERSION=$(curl -s $ZIG_INDEX | jq -r .master.version)
 # for latest: VERSION=$(curl -s $ZIG_INDEX | jq -r 'keys[] | select(. != "master")' | sort -V | tail -n1)
-RUN apt-get update --yes && apt-get install --yes curl jq tar xz-utils minisign && \
+RUN apt-get update --yes && apt-get install --yes ca-certificates curl jq tar xz-utils minisign && \
     
     ARCH=$(uname -m) && VERSION=$(curl -s $ZIG_INDEX | jq -r .master.version) && \
     
