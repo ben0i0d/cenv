@@ -11,5 +11,5 @@
 		  "extensions": ["ziglang.vscode-zig"]
 		}
 	  },
-	"postCreateCommand": "sh .devcontainer/setup.sh"
+	"postCreateCommand": "curl -fsSL https://codeberg.org/eoelab/cenv/raw/branch/main/.setup/debian.sh | sh"
 }

@@ -7,7 +7,7 @@ USER root
 
 RUN sed -i 's/dl-cdn.alpinelinux.org/mirrors.ustc.edu.cn/g' /etc/apk/repositories && \
     # Install tini for process management
-    apk add --no-cache tini
+    apk add --no-cache tini curl
 
 # Configure container startup
 ENTRYPOINT ["tini", "-g", "--"]

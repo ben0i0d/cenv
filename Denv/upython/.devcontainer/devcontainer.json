@@ -11,5 +11,5 @@
 		  "extensions": ["ms-pyright.pyright", "davescodemusings.mpremote"]
 		}
 	  },
-	"postCreateCommand": "sh .devcontainer/setup.sh"
+	"postCreateCommand": "curl -fsSL https://codeberg.org/eoelab/cenv/raw/branch/main/.setup/alpine.sh | sh"
 }
