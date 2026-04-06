@@ -5,10 +5,9 @@
 
 	"image": "codeberg.org/eoelab/cenv:c",
 
-	// Support for ccache store
-	"mounts": ["source=ccache,target=/ccache,type=volume"],
-	// cmake
+	// Support for ccache & cmake
 	"containerEnv": {
+		"CCACHE_DIR": "${containerWorkspaceFolder}/.ccache",
 		"CMAKE_C_COMPILER_LAUNCHER": "ccache"
 	},
 
@@ -18,5 +17,6 @@
 		  "extensions": ["ms-vscode.cpptools-extension-pack"]
 		}
 	  },
-	"onCreateCommand": "curl -fsSL https://codeberg.org/eoelab/cenv/raw/branch/main/.setup/debian.sh | sh"
+	"onCreateCommand": "curl -fsSL https://codeberg.org/eoelab/cenv/raw/branch/main/.setup/debian.sh | sh",
+	"updateContentCommand": "mkdir -p .ccache && ccache --set-config=compression=true && ccache --max-size=32G"
 }
