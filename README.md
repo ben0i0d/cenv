@@ -6,7 +6,7 @@
 * OS: 
     * debian sid
     * alpine edge
-* ROCM: 7.2.0
+* ROCM: 7.2.1
 * CUDA: >= 13.1
 
 ## Container Create
@@ -19,9 +19,12 @@
     1. Press Ctrl + Shift + P (Windows/Linux) or Cmd + Shift + P (macOS) to open the Command Palette.
     2. Type `Reload Window` in the search bar.
     3. Select the `Reload Window` command.
-2. c/cpp environment: `.vscode` config may not be loaded on the first run. Please `Reload Window` to ensure the configuration is loaded.
+2. For devcontainer container setup, the following commands are executed in order: **`onCreateCommand` → `updateContentCommand` → `postCreateCommand`**
+    * By default, we use **`onCreateCommand`** to perform the initial development container setup (including installing Git and adding the public key).
+    * If these scripts do not fully meet your needs, please use **`updateContentCommand`** or **`postCreateCommand`** to add your own custom steps.
+3. c/cpp environment: `.vscode` config may not be loaded on the first run. Please `Reload Window` to ensure the configuration is loaded.
     1. if you need source, please run `sed -i 's/Types: deb/Types: deb deb-src/' /etc/apt/sources.list.d/debian.sources`
-3. upython(micropython): 
+4. upython(micropython): 
     1. run `sudo usermod -aG dialout $USER` before use container, add youself to `dialout`
     2. hardware -> tty:
         * raspberry pico: `/dev/ttyACM0`

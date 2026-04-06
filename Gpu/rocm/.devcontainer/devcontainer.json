@@ -10,5 +10,5 @@
 			"extensions": ["ms-python.python", "ms-python.vscode-pylance", "ms-toolsai.jupyter"]
 		}
 	  },
-	"postCreateCommand": "curl -fsSL https://codeberg.org/eoelab/cenv/raw/branch/main/.setup/debian.sh | sh"
+	"onCreateCommand": "curl -fsSL https://codeberg.org/eoelab/cenv/raw/branch/main/.setup/debian.sh | sh"
 }
