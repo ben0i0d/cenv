@@ -10,7 +10,7 @@ on:
 
 jobs:
   Mirror:
-    runs-on: runner
+    runs-on: codeberg-tiny
     container:
       image: codeberg.org/eoelab/cenv:crane
     steps:
