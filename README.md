@@ -37,7 +37,13 @@
     2. **Note that you do not need to install the CUDA Toolkit on the host system, but the NVIDIA driver needs to be installed**
     3. For instructions on getting started with the NVIDIA Container Toolkit, refer to the [installation guide](https://docs.nvidia.com/datacenter/cloud-native/container-toolkit/install-guide.html#installation-guide)
     4. for china,maybe need a mirror site: run `sed -i 's/developer.download.nvidia.com/developer.download.nvidia.cn/g' /etc/apt/sources.list.d/cuda-debian13-x86_64.list`
-2. rocm: 
+2. oneapi:
+    1. Install the compute-related packages: apt install libze-intel-gpu1 libze1 intel-metrics-discovery intel-opencl-icd clinfo intel-gsc
+    2. Install the media-related packages(Optional): apt install intel-media-va-driver-non-free libmfx-gen1 libvpl2 libvpl-tools libva-glx2 va-driver-all vainfo
+    3. For PyTorch: apt install libze-dev intel-ocloc
+    4. enable hardware ray tracing support(Optional): apt install libze-intel-gpu-raytracing
+    5. install Intel Deep Learning Essentials: apt install intel-deep-learning-essentials-2025.3
+3. rocm: 
     1. run `sudo usermod -aG video,render $USER` before use container, add youself to `video`,`render`
     2. how to run jax/flax:
         1. apt install rocm
@@ -47,12 +53,10 @@
         2. run `sed -i 's/repo.radeon.com/radeon.geekery.cn/g' /etc/apt/sources.list.d/rocm.list`
     4. how to run pytorch: PyTorch doesn’t require user-space ROCm support;
         1. see [pytorch](https://pytorch.org/)
-3. oneapi:
-    1. Install the compute-related packages: apt install libze-intel-gpu1 libze1 intel-metrics-discovery intel-opencl-icd clinfo intel-gsc
-    2. Install the media-related packages(Optional): apt install intel-media-va-driver-non-free libmfx-gen1 libvpl2 libvpl-tools libva-glx2 va-driver-all vainfo
-    3. For PyTorch: apt install libze-dev intel-ocloc
-    4. enable hardware ray tracing support(Optional): apt install libze-intel-gpu-raytracing
-    5. install Intel Deep Learning Essentials: apt install intel-deep-learning-essentials-2025.3
+4. rocm712: 
+    1. run `sudo usermod -aG video,render $USER` before use container, add youself to `video`,`render`
+    2. how to use:
+        1. see [rocm-preview](https://rocm.docs.amd.com/en/7.12.0-preview/)
 
 ## Jupyter
 1. For commercial software such as Mathematica, MATLAB, etc., we only provide packaging, and the specific activation method and possible consequences are borne by the user

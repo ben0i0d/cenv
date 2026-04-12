@@ -68,7 +68,7 @@ jobs:
     needs: Denv
     strategy:
       matrix:
-        tag: [cuda, oneapi, rocm]
+        tag: [cuda, oneapi, rocm, rocm712]
     steps:
       - *checkout
       - *login
