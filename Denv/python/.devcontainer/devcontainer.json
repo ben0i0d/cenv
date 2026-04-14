@@ -4,11 +4,18 @@
 	"name": "python",
 	
 	"image": "codeberg.org/eoelab/cenv:python",
+
+	// Support for pip_cache
+	"containerEnv": {
+		"PIP_CACHE_DIR": "${containerWorkspaceFolder}/.cache/pip"
+	},
+
 	// Configure vscode-extensions.
 	"customizations": {
 		"vscode": {
 		  "extensions": ["ms-python.python", "ms-python.vscode-pylance", "ms-toolsai.jupyter"]
 		}
 	  },
-	"onCreateCommand": "curl -fsSL https://codeberg.org/eoelab/cenv/raw/branch/main/.setup/debian.sh | sh"
+	"onCreateCommand": "curl -fsSL https://codeberg.org/eoelab/cenv/raw/branch/main/.setup/debian.sh | sh",
+	"updateContentCommand": "mkdir -p .cache/pip"
 }
