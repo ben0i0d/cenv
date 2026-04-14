@@ -60,7 +60,25 @@ jobs:
             --dockerfile Denv/${{ matrix.tag }}/Dockerfile \
             --destination codeberg.org/${{ forgejo.repository }}:${{ matrix.tag }} \
             --single-snapshot
-  
+
+  DataEnv:
+    runs-on: runner
+    container:
+      image: codeberg.org/eoelab/cenv:kaniko
+    needs: Denv
+    strategy:
+      matrix:
+        tag: [sql]
+    steps:
+      - *checkout
+      - *login
+      - run: |
+          /kaniko/executor \
+            --context DataEnv/${{ matrix.tag }} \
+            --dockerfile DataEnv/${{ matrix.tag }}/Dockerfile \
+            --destination codeberg.org/${{ forgejo.repository }}:${{ matrix.tag }} \
+            --single-snapshot
+
   Gpu:
     runs-on: runner
     container:

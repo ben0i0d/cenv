@@ -7,7 +7,8 @@
 
 	// Support for ccache & cmake
 	"containerEnv": {
-		"CCACHE_DIR": "${containerWorkspaceFolder}/.ccache",
+		"PATH": "/usr/lib/ccache:$PATH",
+		"CCACHE_DIR": "${containerWorkspaceFolder}/.cache/ccache",
 		"CMAKE_C_COMPILER_LAUNCHER": "ccache",
 		"CMAKE_CXX_COMPILER_LAUNCHER": "ccache"
 	},
@@ -18,6 +19,6 @@
 		  "extensions": ["ms-vscode.cpptools-extension-pack"]
 		}
 	  },
-	"onCreateCommand": "curl -fsSL https://codeberg.org/eoelab/cenv/raw/branch/main/.setup/debian.sh | sh",
-	"updateContentCommand": "mkdir -p .ccache && ccache --set-config=compression=true && ccache --max-size=32G"
+	"onCreateCommand": "curl -fsSL https://codeberg.org/eoelab/cenv/raw/branch/main/.setup/base.sh | sh",
+	"updateContentCommand": "curl -fsSL https://codeberg.org/eoelab/cenv/raw/branch/main/.setup/ccache.sh | sh"
 }

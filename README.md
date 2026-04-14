@@ -114,6 +114,11 @@ subgraph Debian
     steam
     end
 
+    python-->DataEnv
+    subgraph DataEnv
+    sql
+    end
+
     python-->Gpu
     subgraph Gpu
     cuda
