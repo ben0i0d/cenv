@@ -1,0 +1,15 @@
+// For format details, see https://aka.ms/devcontainer.json. 
+// For config options, see the README at: https://github.com/devcontainers/templates/tree/main/src/debian
+{
+	"name": "mysql",
+	"image": "codeberg.org/eoelab/cenv:mysql",
+
+	// Configure vscode-extensions.
+	"customizations": {
+		"vscode": {
+		  "extensions": ["cweijan.vscode-mysql-client2"]
+		}
+	  },
+	
+	"postStartCommand": "curl -fsSL https://codeberg.org/eoelab/cenv/raw/branch/main/.bootstrap/mysql.sh | sh"
+}

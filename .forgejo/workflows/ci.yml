@@ -2,16 +2,16 @@ name: CI
 
 on:
   # Triggers the workflow on push or pull request events but only for the "main" branch
-  push:
-    branches: [ "main" ]
-  pull_request:
-    branches: [ "main" ]
+  # push:
+  #   branches: [ "main" ]
+  # pull_request:
+  #   branches: [ "main" ]
 
   # Allows you to run this workflow manually from the Actions tab
   workflow_dispatch:
 
 jobs:
-  Base:
+  OS:
     runs-on: runner
     container:
       image: codeberg.org/eoelab/cenv:kaniko
@@ -38,62 +38,164 @@ jobs:
           EOF
       - run: |
           /kaniko/executor \
-            --context Base/${{ matrix.tag }} \
-            --dockerfile Base/${{ matrix.tag }}/Dockerfile \
-            --destination codeberg.org/${{ forgejo.repository }}:${{ matrix.tag }} \
-            --single-snapshot
-  
-  Denv:
-    runs-on: runner
-    container:
-      image: codeberg.org/eoelab/cenv:kaniko
-    needs: Base
-    strategy:
-      matrix:
-        tag: [c, cpp, julia, python, upython, zig]
-    steps:
-      - *checkout
-      - *login
-      - run: |
-          /kaniko/executor \
-            --context Denv/${{ matrix.tag }} \
-            --dockerfile Denv/${{ matrix.tag }}/Dockerfile \
+            --context OS/${{ matrix.tag }} \
+            --dockerfile OS/${{ matrix.tag }}/Dockerfile \
             --destination codeberg.org/${{ forgejo.repository }}:${{ matrix.tag }} \
             --single-snapshot
 
-  DataEnv:
+  Accel:
     runs-on: runner
     container:
       image: codeberg.org/eoelab/cenv:kaniko
-    needs: Denv
-    strategy:
-      matrix:
-        tag: [sql]
-    steps:
-      - *checkout
-      - *login
-      - run: |
-          /kaniko/executor \
-            --context DataEnv/${{ matrix.tag }} \
-            --dockerfile DataEnv/${{ matrix.tag }}/Dockerfile \
-            --destination codeberg.org/${{ forgejo.repository }}:${{ matrix.tag }} \
-            --single-snapshot
-
-  Gpu:
-    runs-on: runner
-    container:
-      image: codeberg.org/eoelab/cenv:kaniko
-    needs: Denv
+    needs: OS
     strategy:
       matrix:
         tag: [cuda, oneapi, rocm, rocm712]
     steps:
+      - &checkout
+        run: |
+          wget -O main.zip https://codeberg.org/eoelab/cenv/archive/refs/heads/main.zip
+          unzip -o main.zip
+          mv cenv/* .
+      - &login
+        run: |
+          mkdir -p /kaniko/.docker
+          cat > /kaniko/.docker/config.json <<EOF
+          {
+            "auths": {
+              "codeberg.org": {
+                "auth": "$(echo -n '${{ vars.PM_USER }}:${{ secrets.PM_PAT }}' | base64)"
+              }
+            }
+          }
+          EOF
+      - run: |
+          /kaniko/executor \
+            --context Base/Accel/${{ matrix.tag }} \
+            --dockerfile Base/Accel/${{ matrix.tag }}/Dockerfile \
+            --destination codeberg.org/${{ forgejo.repository }}:${{ matrix.tag }} \
+            --single-snapshot
+
+  Denv_DBase:
+    runs-on: runner
+    container:
+      image: codeberg.org/eoelab/cenv:kaniko
+    needs: OS
+    strategy:
+      matrix:
+        tag: [adev, ddev]
+    steps:
+      - &checkout
+        run: |
+          wget -O main.zip https://codeberg.org/eoelab/cenv/archive/refs/heads/main.zip
+          unzip -o main.zip
+          mv cenv/* .
+      - &login
+        run: |
+          mkdir -p /kaniko/.docker
+          cat > /kaniko/.docker/config.json <<EOF
+          {
+            "auths": {
+              "codeberg.org": {
+                "auth": "$(echo -n '${{ vars.PM_USER }}:${{ secrets.PM_PAT }}' | base64)"
+              }
+            }
+          }
+          EOF
+      - run: |
+          /kaniko/executor \
+            --context Denv/DBase/${{ matrix.tag }} \
+            --dockerfile Denv/DBase/${{ matrix.tag }}/Dockerfile \
+            --destination codeberg.org/${{ forgejo.repository }}:${{ matrix.tag }} \
+            --single-snapshot
+
+  Denv_Program:
+    runs-on: runner
+    container:
+      image: codeberg.org/eoelab/cenv:kaniko
+    needs: Denv_DBase
+    strategy:
+      matrix:
+        tag: [c, cpp, julia, upython, uv, zig]
+    steps:
       - *checkout
       - *login
       - run: |
           /kaniko/executor \
-            --context Gpu/${{ matrix.tag }} \
-            --dockerfile Gpu/${{ matrix.tag }}/Dockerfile \
+            --context Denv/Program/${{ matrix.tag }} \
+            --dockerfile Denv/Program/${{ matrix.tag }}/Dockerfile \
+            --destination codeberg.org/${{ forgejo.repository }}:${{ matrix.tag }} \
+            --single-snapshot
+
+  Denv_Data:
+    runs-on: runner
+    container:
+      image: codeberg.org/eoelab/cenv:kaniko
+    needs: Denv_DBase
+    strategy:
+      matrix:
+        tag: [mysql]
+    steps:
+      - *checkout
+      - *login
+      - run: |
+          /kaniko/executor \
+            --context Denv/Data/${{ matrix.tag }} \
+            --dockerfile Denv/Data/${{ matrix.tag }}/Dockerfile \
+            --destination codeberg.org/${{ forgejo.repository }}:${{ matrix.tag }} \
+            --single-snapshot
+
+  Renv_RProgram:
+    runs-on: runner
+    container:
+      image: codeberg.org/eoelab/cenv:kaniko
+    needs: OS
+    strategy:
+      matrix:
+        tag: [jre_21, python]
+    steps:
+      - *checkout
+      - *login
+      - run: |
+          /kaniko/executor \
+            --context Renv/RProgram/${{ matrix.tag }} \
+            --dockerfile Renv/RProgram/${{ matrix.tag }}/Dockerfile \
+            --destination codeberg.org/${{ forgejo.repository }}:${{ matrix.tag }} \
+            --single-snapshot
+
+  Renv_Service:
+    runs-on: runner
+    container:
+      image: codeberg.org/eoelab/cenv:kaniko
+    needs: OS
+    strategy:
+      matrix:
+        tag: [mc_be, novnc, steam]
+    steps:
+      - *checkout
+      - *login
+      - run: |
+          /kaniko/executor \
+            --context Renv/Service/${{ matrix.tag }} \
+            --dockerfile Renv/Service/${{ matrix.tag }}/Dockerfile \
+            --destination codeberg.org/${{ forgejo.repository }}:${{ matrix.tag }} \
+            --single-snapshot
+
+  Renv_Tool:
+    runs-on: runner
+    container:
+      image: codeberg.org/eoelab/cenv:kaniko
+    needs: OS
+    strategy:
+      matrix:
+        tag: [crane, zine]
+    steps:
+      - *checkout
+      - *login
+      - run: |
+          /kaniko/executor \
+            --context Renv/Tool/${{ matrix.tag }} \
+            --dockerfile Renv/Tool/${{ matrix.tag }}/Dockerfile \
             --destination codeberg.org/${{ forgejo.repository }}:${{ matrix.tag }} \
             --single-snapshot
 
@@ -101,7 +203,7 @@ jobs:
     runs-on: runner
     container:
       image: codeberg.org/eoelab/cenv:kaniko
-    needs: Denv
+    needs: Renv_RProgram
     strategy:
       matrix:
         tag: [python-nb]
@@ -112,23 +214,5 @@ jobs:
           /kaniko/executor \
             --context Jupyter/${{ matrix.tag }} \
             --dockerfile Jupyter/${{ matrix.tag }}/Dockerfile \
-            --destination codeberg.org/${{ forgejo.repository }}:${{ matrix.tag }} \
-            --single-snapshot
-
-  Renv:
-    runs-on: runner
-    container:
-      image: codeberg.org/eoelab/cenv:kaniko
-    needs: Base
-    strategy:
-      matrix:
-        tag: [crane, jre_21, mc_be, novnc, steam, zine]
-    steps:
-      - *checkout
-      - *login
-      - run: |
-          /kaniko/executor \
-            --context Renv/${{ matrix.tag }} \
-            --dockerfile Renv/${{ matrix.tag }}/Dockerfile \
             --destination codeberg.org/${{ forgejo.repository }}:${{ matrix.tag }} \
             --single-snapshot
