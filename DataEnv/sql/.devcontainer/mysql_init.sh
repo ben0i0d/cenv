@@ -12,5 +12,7 @@ mkdir -p ./.db/mysql
 mkdir -p ./.db/duckdb
 ## only initialize when first time
 if [ ! -d "./.db/mysql/mysql" ]; then
-  mysql_install_db --user=root --datadir=./.db/mysql
+  mysqld --initialize-insecure \
+    --user=root \
+    --datadir=./.db/mysql
 fi

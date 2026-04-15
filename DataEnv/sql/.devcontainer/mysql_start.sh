@@ -7,10 +7,10 @@
 # Exit immediately on error.
 set -e
 
-# start mariadb
-mariadbd --user=root --datadir=./.db/mysql &
+# start mysqld
+mysqld --user=root --datadir=./.db/mysql &
 
-# wait mariadb ready
+# wait mysqld ready
 until mysqladmin ping -u root --silent; do
   sleep 1
 done
