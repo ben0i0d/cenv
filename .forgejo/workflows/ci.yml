@@ -82,7 +82,7 @@ jobs:
     needs: Denv_DBase
     strategy:
       matrix:
-        tag: [c, cpp, julia, upython, uv, zig]
+        tag: [c, cpp, julia, upython, uv, venv, zig]
     steps:
       - *checkout
       - *login
@@ -117,7 +117,7 @@ jobs:
       image: codeberg.org/eoelab/cenv:kaniko
     strategy:
       matrix:
-        tag: [jre21, python]
+        tag: [jre21, python3]
     steps:
       - *checkout
       - *login

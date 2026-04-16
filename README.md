@@ -55,6 +55,9 @@ For example, if you need uv-related configurations, you can refer to the uv conf
         * raspberry pico: `/dev/ttyACM0`
         * raspberry pi: `/dev/ttyUSB0`
     3. stub(support pylance): `pip install micropython-XXX-stubs`, search on `pypi.org`.
+4. uv/venv: By default, venv environment is not created automatically. 
+    * uv: use:`uv venv .venv PYTHON_VERSION` to create it.
+    * venv: use:`python3 -m venv .venv` to create it.
 
 ## Jupyter
 1. For commercial software such as Mathematica, MATLAB, etc., we only provide packaging, and the specific activation method and possible consequences are borne by the user
@@ -107,6 +110,7 @@ subgraph Denv
         julia
         upython
         uv
+        venv
         zig
     end
 
@@ -124,7 +128,7 @@ subgraph Renv
 
     subgraph RProgram
         jre_21
-        python
+        python3
     end
 
     subgraph Service

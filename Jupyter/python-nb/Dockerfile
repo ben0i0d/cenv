@@ -1,4 +1,4 @@
-FROM codeberg.org/eoelab/cenv:python
+FROM codeberg.org/eoelab/cenv:python3
 
 EXPOSE 8888
 
