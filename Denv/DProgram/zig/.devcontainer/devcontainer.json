@@ -10,6 +10,5 @@
 		"vscode": {
 		  "extensions": ["ziglang.vscode-zig"]
 		}
-	  },
-	"onCreateCommand": "curl -fsSL https://codeberg.org/eoelab/cenv/raw/branch/main/.bootstrap/base.sh | sh"
+	  }
 }
