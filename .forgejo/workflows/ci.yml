@@ -117,7 +117,7 @@ jobs:
       image: codeberg.org/eoelab/cenv:kaniko
     strategy:
       matrix:
-        tag: [jre_21, python]
+        tag: [jre21, python]
     steps:
       - *checkout
       - *login

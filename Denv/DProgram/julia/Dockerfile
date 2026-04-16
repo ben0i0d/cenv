@@ -8,7 +8,4 @@ FROM codeberg.org/eoelab/cenv:ddev
 
 COPY --from=builder /opt/julias/ /opt/julias/
 
-ENV JULIA_PKG_SERVER=https://mirrors.cernet.edu.cn/julia \
-    JULIA_NUM_THREADS=auto
-
 RUN ln -sf $(find /opt/julias -type f -path '*/bin/julia' | head -n1) /usr/local/bin/julia

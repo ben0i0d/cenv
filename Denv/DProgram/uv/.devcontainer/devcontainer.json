@@ -5,8 +5,9 @@
 	
 	"image": "codeberg.org/eoelab/cenv:uv",
 
-	// Support for uv_cache
+	// Support for uv mirror & cache
 	"containerEnv": {
+		"UV_INDEX_URL": "https://mirrors.ustc.edu.cn/pypi/simple",
 		"UV_CACHE_DIR": "${containerWorkspaceFolder}/.cache/uv"
 	},
 

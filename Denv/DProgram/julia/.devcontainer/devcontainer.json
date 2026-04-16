@@ -5,6 +5,12 @@
 	
 	"image": "codeberg.org/eoelab/cenv:julia",
 
+	// Support for julia mirror & concurrent
+	"containerEnv": {
+		"JULIA_PKG_SERVER": "https://mirrors.cernet.edu.cn/julia",
+		"JULIA_NUM_THREADS": "auto"
+	},
+
 	// Configure vscode-extensions.
 	"customizations": {
 		"vscode": {
