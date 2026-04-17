@@ -8,7 +8,7 @@ For example, if you need uv-related configurations, you can refer to the uv conf
 ## Container Create
 **Cenv run as root**
 1. **OCI (Podman)**: Use `podman run` to start and run the container.
-2. **Devcontainer (VS Code)**: Copy the `.devcontainer` directory into `WORKDIR`, then open the project in VS Code and use Dev Containers for development.
+2. **Devcontainer (VS Code)**: Copy `SOURCEDIR` to `WORKDIR`, then open the project in VS Code and use Dev Containers for development.
 
 For Accel:
 1. cuda: 
@@ -24,12 +24,8 @@ For Accel:
     * debian sid
     * alpine edge
 
-## Storage
-Containers themselves are stateless, but in practice some data still needs to be persisted. We categorize such data into two types: **workspace** and **cache**.
-
-* **workspace**: the directory where the container performs its actual work. It is typically fixed at `/workspace` (in devcontainer, this corresponds to `/workspaces/<WORKDIR>` by default).
-
-* **cache**: while still stateless in nature, benefits from local persistence to improve performance. Therefore, in development environments like Denv, devcontainer automatically configures cache persistence.
+## Cache Storage
+**cache** while still stateless in nature, benefits from local persistence to improve performance. Therefore, in development environments like Denv, devcontainer automatically configures cache persistence.
 
 The cache consists of two parts:
 
