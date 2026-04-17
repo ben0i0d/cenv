@@ -56,7 +56,7 @@ For example, if you need uv-related configurations, you can refer to the uv conf
         * raspberry pi: `/dev/ttyUSB0`
     3. stub(support pylance): `pip install micropython-XXX-stubs`, search on `pypi.org`.
 4. uv/venv: By default, venv environment is not created automatically. 
-    * uv: use:`uv venv .venv PYTHON_VERSION` to create it.
+    * uv: use:`uv venv --python PYTHON_VERSION .venv` to create it.
     * venv: use:`python3 -m venv .venv` to create it.
 
 ## Jupyter
