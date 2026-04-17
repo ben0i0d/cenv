@@ -16,6 +16,23 @@ For example, if you need uv-related configurations, you can refer to the uv conf
     * debian sid
     * alpine edge
 
+## Storage
+Containers themselves are stateless, but in practice some data still needs to be persisted. We categorize such data into two types: **workspace** and **cache**.
+
+* **workspace**: the directory where the container performs its actual work. It is typically fixed at `/workspace` (in devcontainer, this corresponds to `/workspaces/<WORKDIR>` by default).
+
+* **cache**: while still stateless in nature, benefits from local persistence to improve performance. Therefore, in development environments like Denv, devcontainer automatically configures cache persistence.
+
+The cache consists of two parts:
+
+* **cache**: tool-level caches
+    * pip: /cache/pip
+    * uv: /cache/uv
+    * ccache: /cache/ccache
+* **runtime**: runtime-related data
+    * uv_cpython: /runtime/uv_cpython
+
+
 ## Accel
 1. cuda: >= 13.1
     1. **Make sure you have installed the [NVIDIA driver](https://docs.nvidia.com/datacenter/cloud-native/container-toolkit/install-guide.html#nvidia-drivers) for your Linux Distribution**
