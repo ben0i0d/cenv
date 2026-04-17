@@ -7,8 +7,16 @@ For example, if you need uv-related configurations, you can refer to the uv conf
 
 ## Container Create
 **Cenv run as root**
-1. oci: `podman run`, See the devcontainer config file for more information.
-2. devcontainer(VScode): `cp -r .devcontainer WORKDIR`
+1. **OCI (Podman)**: Use `podman run` to start and run the container.
+2. **Devcontainer (VS Code)**: Copy the `.devcontainer` directory into `WORKDIR`, then open the project in VS Code and use Dev Containers for development.
+
+For Accel:
+1. cuda: 
+    * oci: add `--device=nvidia.com/gpu=all --shm-size=8G --group-add=keep-groups`
+    * devcontainer: add `"runArgs": ["--device=nvidia.com/gpu=all", "--shm-size=8G", "--group-add=keep-groups"]`
+2. oneapi/rocm:
+    * oci: add `--device=/dev/kfd --device=/dev/dri --shm-size=8G --group-add=keep-groups`
+    * devcontainer: add `"runArgs": ["--device=/dev/kfd", "--device=/dev/dri", "--shm-size=8G", "--group-add=keep-groups"]`
 
 ## OS
 * ARCH: x86_64

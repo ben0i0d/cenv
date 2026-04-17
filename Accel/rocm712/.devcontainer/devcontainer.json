@@ -1,7 +1,0 @@
-// For format details, see https://aka.ms/devcontainer.json. 
-// For config options, see the README at: https://github.com/devcontainers/templates/tree/main/src/debian
-{
-	"name": "rocm712",
-	"image": "codeberg.org/eoelab/cenv:rocm712",
-	"runArgs": ["--device=/dev/kfd", "--device=/dev/dri", "--shm-size=8G", "--group-add=keep-groups"]
-}
